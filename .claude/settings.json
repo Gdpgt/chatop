@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Edit(/docs/oc/**)",
+      "Edit(/src/app/**)",
+      "Edit(/src/assets/**)",
+      "Edit(/src/environments/**)",
+      "Edit(/src/*.ts)",
+      "Edit(/src/*.html)",
+      "Edit(/src/*.scss)",
+      "Edit(/src/*.json)",
+      "Edit(/src/*.ico)",
+      "Edit(/angular.json)",
+      "Edit(/package*.json)",
+      "Edit(/yarn.lock)",
+      "Edit(/tsconfig*.json)",
+      "Edit(/jest.config.ts)",
+      "Edit(/setup-jest.ts)",
+      "Edit(/.eslintrc.json)",
+      "Edit(/.editorconfig)"
+    ]
+  }
+}
