@@ -1,0 +1,24 @@
+# Définition d’API
+
+| URL                  | Méthode | Description                                  | Params (path/query) | Body (JSON)                                                                                                             | Status              | Exemple de réponse                                                                                                                                                        |
+| -------------------- | ------- | -------------------------------------------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/api/auth/register` | `POST`  | Créer un compte utilisateur                  | `-`                 | `{ "email": "", "name": "", "password": "" }`                                                                           | `200`, `400`        | `{ "token": "jwt" }`                                                                                                                                                      |
+| `/api/auth/login`    | `POST`  | S'authentifier                               | `-`                 | `{ "email": "", "password": "" }`                                                                                       | `200`, `401`        | `{ "token": "jwt" }`                                                                                                                                                      |
+| `/api/auth/me`       | `GET`   | Récupérer l'utilisateur en base              | `-`                 | `-`                                                                                                                     | `200`, `401`        | `{"id":1,"name":"Test TEST","email":"test@test.com","created_at":"2022/02/02","updated_at":"2022/08/02"}`                                                                 |
+| `/api/user/:id`      | `GET`   | Récupérer les infos d'un utilisateur en base | `id`                | `-`                                                                                                                     | `200`, `401`        | `{"id":2,"name":"Owner Name","email":"test@test.com","created_at":"YYYY/MM/DD","updated_at":"YYYY/MM/DD"}`                                                                |
+| `/api/rentals`       | `POST`  | Créer une location                           | `-`                 | `multipart/form-data` : champs `name`, `surface`, `price`, `description`, `owner_id` + `picture` (fichier, obligatoire) | `200`, `401`        | `{"message": "Rental created !"}`                                                                                                                                         |
+| `/api/rentals`       | `GET`   | Récupérer toutes les locations en base       | `-`                 | `-`                                                                                                                     | `200`, `401`        | `{"rentals": [{"id": 0, "name": "", "surface": 0, "price": 0, "picture": "", "description": "", "owner_id": 0, "created_at": "YYYY/MM/DD", "updated_at": "YYYY/MM/DD"}]}` |
+| `/api/rentals/:id`   | `GET`   | Récupérer les infos d'une location en base   | `id`                | `-`                                                                                                                     | `200`, `401`        | `{"id": 0, "name": "", "surface": 0, "price": 0, "picture": [""], "description": "", "owner_id": 0, "created_at": "YYYY/MM/DD", "updated_at": "YYYY/MM/DD"}`              |
+| `/api/rentals/:id`   | `PUT`   | Mettre à jour une location                   | `id`                | `multipart/form-data` : champs `name`, `surface`, `price`, `description`, `owner_id` + `picture` (fichier, optionnel)   | `200`, `401`        | `{"message": "Rental updated !"}`                                                                                                                                         |
+| `/api/messages`      | `POST`  | Envoyer un message                           | `-`                 | `{"rental_id": 0, "user_id": 0, "message": ""}`                                                                         | `200`, `401`, `400` | `{"message": "Message send with success"}`                                                                                                                                |
+
+# Dépendances Spring Boot à utiliser :
+
+- Spring Boot Starter Web
+- Spring Boot Starter Data Jpa
+- MySQL Connector
+- Spring Boot Starter Security
+- JSONWebToken
+- Spring Boot Starter Validation
+- Spring Boot Devtools
+- Springdoc OpenAPI Starter WebMVC UI
