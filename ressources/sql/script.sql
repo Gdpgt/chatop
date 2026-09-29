@@ -1,3 +1,13 @@
+CREATE DATABASE `chatop_db`;
+USE chatop_db;
+
+-- REMPLACER ${MYSQL_PASSWORD} par le mot de passe souhaité entre guillemets simples 
+-- (lui-même stocké dans le fichier .env non versionné, ou une variable d'environnement)
+CREATE USER 'chatop'@'localhost' IDENTIFIED BY ${MYSQL_PASSWORD};
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON chatop_db.* TO 'chatop'@'localhost';
+FLUSH PRIVILEGES;
+
 CREATE TABLE `USERS` (
   `id` integer PRIMARY KEY AUTO_INCREMENT,
   `email` varchar(255),

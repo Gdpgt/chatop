@@ -6,20 +6,27 @@ This project is based on Angular 20, and requires node 22.
 
 Git clone:
 
-> git clone https://github.com/OpenClassrooms-Student-Center/P3-Full-Stack-portail-locataire
+```bash
+git clone https://github.com/Gdpgt/chatop
+```
 
 Go inside folder:
 
-> cd Mod-lisez-et-impl-mentez-le-back-end-en-utilisant-du-code-Java-maintenable
+```bash
+cd chatop
+```
 
 Install dependencies:
 
-> npm install
+```bash
+npm install
+```
 
 Launch Front-end:
 
-> npm run start;
-
+```bash
+npm run start
+```
 
 ## Ressources
 
@@ -31,7 +38,7 @@ After installing you could load the environement
 
 > ressources/mockoon/rental-oc.json
 
-directly inside Mockoon 
+directly inside Mockoon
 
 > File > Open environmement
 
@@ -41,4 +48,15 @@ Mockoon documentation: https://mockoon.com/docs/latest/about/
 
 ### MySQL
 
-SQL script for creating the schema is available `ressources/sql/script.sql`
+#### Prerequisites
+
+MySQL Server installed.
+
+SQL script for creating the database, its user and its schema is available `ressources/sql/script.sql`.
+You can launch it with:
+
+```bash
+mysql -u root -p < ressources/sql/script.sql
+```
+
+> **CAUTION** : Do not forget to replace the ${password} placeholder by the user password you choose (between single quotes). You can then save this password inside your .env file or your environment variables.

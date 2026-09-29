@@ -11,9 +11,9 @@
 - [x] Environnement installé (Java, Node, Angular CLI 20) et front lancé [BRIEF]
 - [x] Mockoon installé, environnement du projet démarré, front fonctionnel dessus [BRIEF]
 - [x] Spécification des endpoints rédigée selon le modèle (URL, verbe, params, JSON, codes) [BRIEF]
-- [ ] Entités métier et dépendances Spring Boot identifiées [BRIEF]
-- [ ] Base MySQL `chatop_db` créée avec `ressources/sql/script.sql`, utilisateur dédié non-root [BRIEF]
-- [ ] Credentials BDD hors du code [SPECS]
+- [x] Entités métier et dépendances Spring Boot identifiées [BRIEF]
+- [x] Base MySQL `chatop_db` créée avec `ressources/sql/script.sql`, utilisateur dédié non-root [BRIEF]
+- [x] Credentials BDD hors du code [SPECS]
 
 ## Exercice 2 — Implémenter l'architecture et le code back-end
 
