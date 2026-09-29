@@ -1,0 +1,8 @@
+# Maven
+target/
+.mvn/wrapper/maven-wrapper.jar
+HELP.md
+
+# Images de location uploadées (on ne versionne que le dossier)
+uploads/*
+!uploads/.gitkeep

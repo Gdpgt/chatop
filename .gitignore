@@ -1,47 +1,49 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
-# Compiled output
+# --- Front Angular ---
 /dist
-/tmp
 /out-tsc
 /bazel-out
-
-# Node
 /node_modules
+/.angular/cache
+/coverage
+/typings
+.sass-cache/
+/connect.lock
+/libpeerconnection.log
+testem.log
 npm-debug.log
 yarn-error.log
 
-# IDEs and editors
+# --- Back Spring Boot (règles Maven spécifiques dans backend/.gitignore) ---
+
+# --- IDE (tous niveaux, y compris backend/) ---
 .idea/
+*.iml
+*.iws
+*.ipr
 .project
 .classpath
+.factorypath
+.settings/
+.apt_generated
+.springBeans
+.sts4-cache
 .c9/
 *.launch
-.settings/
 *.sublime-workspace
+.history/
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+# VS Code : on ne versionne que la config partagée
+**/.vscode/*
+!**/.vscode/settings.json
+!**/.vscode/tasks.json
+!**/.vscode/launch.json
+!**/.vscode/extensions.json
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-
-# System files
+# --- Système ---
 .DS_Store
 Thumbs.db
 
-# Secrets (credentials BDD, clé JWT)
+# --- Secrets (credentials BDD, clé JWT) ---
 .env
 .env.*
 !.env.example
