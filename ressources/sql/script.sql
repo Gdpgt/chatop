@@ -1,23 +1,24 @@
-CREATE DATABASE `chatop_db`;
+CREATE DATABASE IF NOT EXISTS `chatop_db`;
 USE chatop_db;
 
 -- REMPLACER ${MYSQL_PASSWORD} par le mot de passe souhaité entre guillemets simples 
 -- (lui-même stocké dans le fichier .env non versionné, ou une variable d'environnement)
-CREATE USER 'chatop'@'localhost' IDENTIFIED BY ${MYSQL_PASSWORD};
+CREATE USER IF NOT EXISTS 'chatop'@'localhost' IDENTIFIED BY ${MYSQL_PASSWORD};
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON chatop_db.* TO 'chatop'@'localhost';
 FLUSH PRIVILEGES;
 
-CREATE TABLE `USERS` (
+CREATE TABLE IF NOT EXISTS `USERS` (
   `id` integer PRIMARY KEY AUTO_INCREMENT,
   `email` varchar(255),
   `name` varchar(255),
   `password` varchar(255),
   `created_at` timestamp,
-  `updated_at` timestamp
+  `updated_at` timestamp,
+  UNIQUE KEY `USERS_index` (`email`)
 );
 
-CREATE TABLE `RENTALS` (
+CREATE TABLE IF NOT EXISTS `RENTALS` (
   `id` integer PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255),
   `surface` numeric,
@@ -29,7 +30,7 @@ CREATE TABLE `RENTALS` (
   `updated_at` timestamp
 );
 
-CREATE TABLE `MESSAGES` (
+CREATE TABLE IF NOT EXISTS `MESSAGES` (
   `id` integer PRIMARY KEY AUTO_INCREMENT,
   `rental_id` integer,
   `user_id` integer,
@@ -37,8 +38,6 @@ CREATE TABLE `MESSAGES` (
   `created_at` timestamp,
   `updated_at` timestamp
 );
-
-CREATE UNIQUE INDEX `USERS_index` ON `USERS` (`email`);
 
 ALTER TABLE `RENTALS` ADD FOREIGN KEY (`owner_id`) REFERENCES `USERS` (`id`);
 
