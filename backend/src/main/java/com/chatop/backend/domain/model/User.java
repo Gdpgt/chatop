@@ -27,7 +27,7 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Setter(AccessLevel.NONE)
   @ToString.Include
-  private Long id;
+  private Integer id;
 
   @NotBlank(message = NAME_MANDATORY_MESSAGE)
   @Size(min = NAME_MIN, max = NAME_MAX, message = NAME_SIZE_MESSAGE)
