@@ -5,7 +5,7 @@ Rental application: Angular 20 front-end, Spring Boot back-end (Java 25) and MyS
 ## Prerequisites
 
 - Node 22 or 24
-- JDK 25
+- JDK 25 (with SDKMAN: `sdk env install` then `sdk env` at the project root, see `.sdkmanrc`)
 - Docker with the Compose plugin, **or** a local MySQL Server
 
 ## Start the project
@@ -68,6 +68,18 @@ cd backend
 
 The API is served on `http://localhost:3001/api`. The back-end reads `../env.properties`
 and checks at startup that the database schema matches its entities.
+
+#### VS Code
+
+Set the JDK in your user settings (the path is machine-specific, so `.vscode/` is not versioned):
+
+```json
+"java.configuration.runtimes": [
+  { "name": "JavaSE-25", "path": "/path/to/jdk-25", "default": true }
+]
+```
+
+Maven needs no setup: the Maven extension uses `backend/mvnw`.
 
 ### 5. Front-end
 
