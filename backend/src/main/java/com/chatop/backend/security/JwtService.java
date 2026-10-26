@@ -1,4 +1,4 @@
-package com.chatop.backend.service;
+package com.chatop.backend.security;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;

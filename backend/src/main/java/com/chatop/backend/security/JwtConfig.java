@@ -1,4 +1,4 @@
-package com.chatop.backend.config;
+package com.chatop.backend.security;
 
 import java.nio.charset.StandardCharsets;
 

@@ -1,4 +1,4 @@
-package com.chatop.backend.config;
+package com.chatop.backend.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

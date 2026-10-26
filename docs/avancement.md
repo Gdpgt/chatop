@@ -18,8 +18,8 @@
 ## Exercice 2 — Implémenter l'architecture et le code back-end
 
 - [ ] `/register` et `/login` avec JWT, Spring Security (publiques : register, login, Swagger) [BRIEF]
-- [ ] Mots de passe chiffrés en base (BCrypt) [SPECS]
-- [ ] Couches Entity / Repository / Service / Controller, DTO, handler d'exceptions global [BRIEF]
+- [x] Mots de passe chiffrés en base (BCrypt) [SPECS]
+- [x] Couches Entity / Repository / Service / Controller, DTO, handler d'exceptions global [BRIEF]
 - [ ] Toutes les routes Mockoon implémentées et validées avec le front [SPECS]
 - [ ] Image de location : upload, stockage serveur, URL en base [SPECS]
 - [ ] Swagger : chaque route documentée, testable avec un Bearer token [BRIEF]
