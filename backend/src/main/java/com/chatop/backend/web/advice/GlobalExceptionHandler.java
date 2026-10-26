@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import com.chatop.backend.domain.exception.UserAlreadyExistsException;
+import com.chatop.backend.domain.exception.UserNotFoundException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,6 +25,20 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, Object> handleUserAlreadyExistsException(UserAlreadyExistsException e) {
         log.warn("This user already exists in the database.");
+        return Map.of();
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public Map<String, Object> handleBadCredentials(BadCredentialsException e) {
+        log.warn("Authentication failed: bad credentials.");
+        return Map.of();
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Map<String, Object> handleUserNotFoundException(UserNotFoundException e) {
+        log.warn("This user does not exist in the database.");
         return Map.of();
     }
 
