@@ -50,14 +50,22 @@ pagination / cache, toute modification du front.
 
 ## Divergences entre sources (à arbitrer par l'apprenant, ne pas trancher)
 
+Principe tranché : le front (immuable) prime sur le mock et les briefs. Détail : `docs/definition_API.md`.
+
 1. Routes : P3_2 écrit `/register`, `/login`, `/rentals`, `/messages`, `/user` sans préfixe ↔ modèle d'API et mock : `/api/auth/register|login`, `/api/user/:id`… (+ `GET /api/auth/me`).
+   → **Tranché** : routes du front (`/api/...`, + `GET /api/auth/me`).
 2. Statuts : P3_2 cite 201/404, P3_1 200/400/500 ↔ le mock ne renvoie que 200/400/401.
+   → **Tranché** : `201` pour les créations (register, `POST` rentals, `POST` messages), `404` sur id inconnu, `400` sur validation (dont rentals), `403` sur `PUT`/`DELETE` d'une location par un non-propriétaire.
 3. Verbes : P3_2 cite `DELETE` ↔ aucune route DELETE dans le mock.
+   → **Tranché** : `DELETE /api/rentals/:id` implémenté (`204`, propriétaire uniquement), bien que non appelé par le front.
 4. Body : le modèle d'API prévoit « Body (JSON) » ↔ le front envoie `POST`/`PUT /api/rentals` en `multipart/form-data` (champ `picture`).
+   → **Tranché** : `multipart/form-data` comme le front ; `owner_id` déduit du JWT (non envoyé) ; `picture` absent en `PUT` (image conservée).
 5. Credentials : P3_1 « `.env` ou `application.properties` » ↔ P3_2 « pas de valeurs en clair dans `application.properties` ».
 6. README : P3_2 veut un README Spring Boot à la racine ↔ le README racine actuel est celui du front.
 7. Java : specs « 11 ou 17 » ↔ Spring Boot 3.x exige Java 17 minimum.
 8. Mock : le 401 de `auth/login` teste `body.login` (pas `email`) — cas d'erreur peu fiable pour la spec.
+9. Mock ↔ front : `picture` est un tableau dans le mock `GET /api/rentals/:id`, un `string` côté front ; dates `YYYY/MM/DD` dans le mock ; `user_id` envoyé dans `POST /api/messages`.
+   → **Tranché** : `picture` en `string` ; dates ISO 8601 ; champs JSON en snake_case ; expéditeur du message = utilisateur du JWT (`user_id` ignoré).
 
 ## Garde-fou de concentration (toujours actif, mode tuteur ou non)
 

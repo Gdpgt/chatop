@@ -106,3 +106,15 @@ After installing, load the environment `ressources/mockoon/rental-oc.json` insid
 (**File > Open environment**), then click the play button to start the mock server.
 
 Mockoon documentation: https://mockoon.com/docs/latest/about/
+
+## Differences from the Mockoon mock
+
+The Angular front-end cannot be modified, so the back-end follows what the front-end actually sends and reads.
+It deliberately differs from the mock on these points (details in `docs/definition_API.md`):
+
+- **Status codes**: `201 Created` for register, rental creation and message sending (the mock returns `200`).
+- **Extra errors**: `400` on invalid body, `404` on unknown id, `403` when a user who is not the owner updates or deletes a rental.
+- **`DELETE /api/rentals/:id`**: added (`204`, owner only), although the front-end does not call it.
+- **Rental owner and message sender**: taken from the JWT; the `user_id` sent by the front-end in `POST /api/messages` is ignored.
+- **`picture`**: always a string (image URL), including in `GET /api/rentals/:id` where the mock returns an array.
+- **Dates**: ISO 8601 (`2022-02-02T10:15:30`) instead of `YYYY/MM/DD`.

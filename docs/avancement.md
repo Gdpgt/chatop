@@ -4,7 +4,7 @@
 > proposition confirmée). Ce fichier est distinct de la fiche d'auto-évaluation
 > (`docs/oc/Fiches_auto-evaluation.md`), que l'agent ne remplit jamais.
 
-**Étape en cours** : Exercice 1 — installation de l'environnement.
+**Étape en cours** : Exercice 2, implémentation des route mockoon.
 
 ## Exercice 1 — Définir l'interface front-back avec une API
 
@@ -17,7 +17,7 @@
 
 ## Exercice 2 — Implémenter l'architecture et le code back-end
 
-- [ ] `/register` et `/login` avec JWT, Spring Security (publiques : register, login, Swagger) [BRIEF]
+- [x] `/register` et `/login` avec JWT, Spring Security (publiques : register, login, Swagger) [BRIEF]
 - [x] Mots de passe chiffrés en base (BCrypt) [SPECS]
 - [x] Couches Entity / Repository / Service / Controller, DTO, handler d'exceptions global [BRIEF]
 - [ ] Toutes les routes Mockoon implémentées et validées avec le front [SPECS]
