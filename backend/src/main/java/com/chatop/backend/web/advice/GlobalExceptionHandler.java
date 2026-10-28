@@ -10,6 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import com.chatop.backend.domain.exception.UserAlreadyExistsException;
@@ -30,7 +31,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BadCredentialsException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public Map<String, Object> handleBadCredentials(BadCredentialsException e) {
+    public Map<String, Object> handleBadCredentialsException(BadCredentialsException e) {
         log.warn("Authentication failed: bad credentials.");
         return Map.of();
     }
@@ -44,7 +45,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<String, Object> handleValidation(MethodArgumentNotValidException e) {
+    public Map<String, Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         List<String> fields = e.getBindingResult().getFieldErrors().stream()
                 .map(FieldError::getField)
                 .toList();
@@ -54,8 +55,15 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NoResourceFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String, Object> handleNoResourceFound(NoResourceFoundException e) {
+    public Map<String, Object> handleNoResourceFoundException(NoResourceFoundException e) {
         log.warn("No resource found for {}", e.getResourcePath());
+        return Map.of();
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, Object> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
+        log.warn("Invalid type for parameter '{}'", e.getName());
         return Map.of();
     }
 
