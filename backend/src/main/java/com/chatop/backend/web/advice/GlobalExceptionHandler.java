@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
+import com.chatop.backend.domain.exception.RentalNotFoundException;
 import com.chatop.backend.domain.exception.UserAlreadyExistsException;
 import com.chatop.backend.domain.exception.UserNotFoundException;
 
@@ -40,6 +41,13 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Map<String, Object> handleUserNotFoundException(UserNotFoundException e) {
         log.warn("This user does not exist in the database.");
+        return Map.of();
+    }
+
+    @ExceptionHandler(RentalNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Map<String, Object> handleRentalNotFoundException(RentalNotFoundException e) {
+        log.warn("This rental does not exist in the database.");
         return Map.of();
     }
 
