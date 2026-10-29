@@ -1,5 +1,6 @@
 package com.chatop.backend.domain.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -51,13 +52,13 @@ public class Rental {
   @Min(value = SURFACE_MIN, message = SURFACE_RANGE_MESSAGE)
   @Max(value = SURFACE_MAX, message = SURFACE_RANGE_MESSAGE)
   @ToString.Include
-  private Integer surface;
+  private BigDecimal surface;
 
   @NotNull(message = PRICE_MANDATORY_MESSAGE)
   @Min(value = PRICE_MIN, message = PRICE_RANGE_MESSAGE)
   @Max(value = PRICE_MAX, message = PRICE_RANGE_MESSAGE)
   @ToString.Include
-  private Integer price;
+  private BigDecimal price;
 
   @NotBlank(message = PICTURE_MANDATORY_MESSAGE)
   @Size(max = PICTURE_MAX, message = PICTURE_SIZE_MESSAGE)

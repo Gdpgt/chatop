@@ -1,5 +1,6 @@
 package com.chatop.backend.web.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,9 +11,9 @@ public record RentalResponseDto(
 
     String name,
 
-    Integer surface,
+    BigDecimal surface,
 
-    Integer price,
+    BigDecimal price,
 
     String picture,
 
