@@ -23,6 +23,11 @@ public record RegisterRequestDto(
   String password
 ) {
 
+  public RegisterRequestDto {
+    email = email == null ? null : email.strip();
+    name = name == null ? null : name.strip();
+  }
+
   @Override
   public String toString() {
     return "RegisterRequestDto[email=" + email + ", name=" + name + "]";
