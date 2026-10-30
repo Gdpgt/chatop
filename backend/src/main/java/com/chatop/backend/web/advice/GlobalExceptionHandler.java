@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
+import com.chatop.backend.domain.exception.InvalidImageException;
 import com.chatop.backend.domain.exception.RentalNotFoundException;
 import com.chatop.backend.domain.exception.UserAlreadyExistsException;
 import com.chatop.backend.domain.exception.UserNotFoundException;
@@ -48,6 +49,13 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Map<String, Object> handleRentalNotFoundException(RentalNotFoundException e) {
         log.warn("This rental does not exist in the database.");
+        return Map.of();
+    }
+
+    @ExceptionHandler(InvalidImageException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, Object> handleInvalidImageException(InvalidImageException e) {
+        log.warn("Invalid picture upload.");
         return Map.of();
     }
 
