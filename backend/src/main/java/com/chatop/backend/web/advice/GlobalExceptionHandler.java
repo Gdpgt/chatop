@@ -18,6 +18,7 @@ import org.springframework.web.multipart.support.MissingServletRequestPartExcept
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import com.chatop.backend.domain.exception.InvalidImageException;
+import com.chatop.backend.domain.exception.NotRentalOwnerException;
 import com.chatop.backend.domain.exception.RentalNotFoundException;
 import com.chatop.backend.domain.exception.UserAlreadyExistsException;
 import com.chatop.backend.domain.exception.UserNotFoundException;
@@ -53,6 +54,13 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND) // 404
     public Map<String, Object> handleRentalNotFoundException(RentalNotFoundException e) {
         log.warn("This rental does not exist in the database.");
+        return Map.of();
+    }
+
+    @ExceptionHandler(NotRentalOwnerException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN) // 403
+    public Map<String, Object> handleNotRentalOwnerException(NotRentalOwnerException e) {
+        log.warn("Only the owner can modify or delete this rental.");
         return Map.of();
     }
 
