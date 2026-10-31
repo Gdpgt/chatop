@@ -13,7 +13,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.chatop.backend.domain.exception.InvalidImageException;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class ImageStorageService {
 
     // Extension derived from the content type, never from the client file name
@@ -40,6 +43,20 @@ public class ImageStorageService {
             throw new UncheckedIOException("Failed to store image " + fileName, e);
         }
         return publicUrl + "/" + fileName;
+    }
+
+    public void delete(String pictureUrl) {
+        // Only the file name is kept: the URL prefix may differ from the current publicUrl
+        Path file = uploadDir.resolve(pictureUrl.substring(pictureUrl.lastIndexOf('/') + 1)).normalize();
+        if (!file.getParent().equals(uploadDir)) {
+            log.warn("Refusing to delete a file outside the upload directory: {}", pictureUrl);
+            return;
+        }
+        try {
+            Files.deleteIfExists(file);
+        } catch (IOException e) {
+            log.warn("Failed to delete image {}", file, e);
+        }
     }
 
     private String extensionOf(MultipartFile image) {
