@@ -54,6 +54,14 @@ public final class ValidationPatterns {
 
   public static final String OWNER_MANDATORY_MESSAGE = "The owner is mandatory.";
 
+  public static final int MESSAGE_MAX = 2000;
+  public static final String MESSAGE_MANDATORY_MESSAGE = "The message is mandatory.";
+  public static final String MESSAGE_SIZE_MESSAGE =
+    "The message must not exceed " + MESSAGE_MAX + " characters.";
+  public static final String MESSAGE_FORMAT_MESSAGE = "The message contains unauthorized characters.";
+  public static final String RENTAL_MANDATORY_MESSAGE = "The rental is mandatory.";
+  public static final String SENDER_MANDATORY_MESSAGE = "The sender is mandatory.";
+
   private ValidationPatterns() {
   }
 }
