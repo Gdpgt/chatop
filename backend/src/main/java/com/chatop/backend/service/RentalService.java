@@ -46,6 +46,16 @@ public class RentalService {
                 .setDescription(changes.getDescription());
     }
 
+    @Transactional
+    public void delete(int id, String requesterEmail) {
+        Rental rental = getById(id);
+        assertOwner(rental, requesterEmail);
+        rentalRepository.delete(rental);
+        // Flush first: a failing SQL delete must not leave the rental without its image
+        rentalRepository.flush();
+        imageStorageService.delete(rental.getPicture());
+    }
+
     private void assertOwner(Rental rental, String requesterEmail) {
         if (!rental.getOwnerId().equals(userService.getByEmail(requesterEmail).getId())) {
             throw new NotRentalOwnerException();
