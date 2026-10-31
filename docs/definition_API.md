@@ -13,7 +13,7 @@
 | `/api/rentals` | `POST` | Créer une location (propriétaire = utilisateur du JWT) | `-` | `multipart/form-data` : `name`, `surface`, `price`, `description` + `picture` (fichier, obligatoire) | `201`, `400`, `401`, `413` | `{ "message": "Rental created !" }` |
 | `/api/rentals/:id` | `PUT` | Mettre à jour une location (propriétaire uniquement, image conservée) | `id` | `multipart/form-data` : `name`, `surface`, `price`, `description` | `200`, `400`, `401`, `403`, `404` | `{ "message": "Rental updated !" }` |
 | `/api/rentals/:id` | `DELETE` | Supprimer une location (propriétaire uniquement) | `id` | `-` | `204`, `401`, `403`, `404` | `-` |
-| `/api/messages` | `POST` | Envoyer un message au propriétaire d'une location (expéditeur = utilisateur du JWT) | `-` | `{ "rental_id": 1, "user_id": 1, "message": "" }` | `201`, `400`, `401`, `404` | `{ "message": "Message send with success" }` |
+| `/api/messages` | `POST` | Envoyer un message au propriétaire d'une location (expéditeur = utilisateur du JWT) | `-` | `{ "rental_id": 1, "user_id": 1, "message": "" }` | `201`, `400`, `401`, `404` | `{ "message": "Message sent with success" }` |
 
 ## Contraintes imposées par le front
 
