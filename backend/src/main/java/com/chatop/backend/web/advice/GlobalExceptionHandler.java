@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
@@ -92,6 +93,13 @@ public class GlobalExceptionHandler {
                 .map(FieldError::getField)
                 .toList();
         log.warn("Validation failed on fields : {}", fields);
+        return Map.of();
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST) // 400
+    public Map<String, Object> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
+        log.warn("Malformed or unreadable request body");
         return Map.of();
     }
 
