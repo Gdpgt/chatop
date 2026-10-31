@@ -3,8 +3,10 @@ package com.chatop.backend.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.chatop.backend.domain.exception.NotRentalOwnerException;
 import com.chatop.backend.domain.exception.RentalNotFoundException;
 import com.chatop.backend.domain.model.Rental;
 import com.chatop.backend.repository.RentalRepository;
@@ -32,5 +34,21 @@ public class RentalService {
         rental.setOwnerId(userService.getByEmail(ownerEmail).getId());
         rental.setPicture(imageStorageService.store(picture));
         rentalRepository.save(rental);
+    }
+
+    @Transactional
+    public void update(int id, Rental changes, String requesterEmail) {
+        Rental rental = getById(id);
+        assertOwner(rental, requesterEmail);
+        rental.setName(changes.getName())
+                .setSurface(changes.getSurface())
+                .setPrice(changes.getPrice())
+                .setDescription(changes.getDescription());
+    }
+
+    private void assertOwner(Rental rental, String requesterEmail) {
+        if (!rental.getOwnerId().equals(userService.getByEmail(requesterEmail).getId())) {
+            throw new NotRentalOwnerException();
+        }
     }
 }
