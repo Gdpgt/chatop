@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.chatop.backend.domain.exception.NotRentalOwnerException;
 import com.chatop.backend.domain.exception.RentalNotFoundException;
 import com.chatop.backend.domain.model.Rental;
+import com.chatop.backend.repository.MessageRepository;
 import com.chatop.backend.repository.RentalRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class RentalService {
 
     private final RentalRepository rentalRepository;
+    private final MessageRepository messageRepository;
     private final UserService userService;
     private final ImageStorageService imageStorageService;
 
@@ -50,6 +52,7 @@ public class RentalService {
     public void delete(int id, String requesterEmail) {
         Rental rental = getById(id);
         assertOwner(rental, requesterEmail);
+        messageRepository.deleteByRentalId(id);
         rentalRepository.delete(rental);
         // Flush first: a failing SQL delete must not leave the rental without its image
         rentalRepository.flush();
