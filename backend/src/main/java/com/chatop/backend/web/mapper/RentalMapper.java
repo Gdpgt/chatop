@@ -4,11 +4,20 @@ import java.util.List;
 
 import com.chatop.backend.domain.model.Rental;
 import com.chatop.backend.web.dto.RentalListResponseDto;
+import com.chatop.backend.web.dto.RentalRequestDto;
 import com.chatop.backend.web.dto.RentalResponseDto;
 
 public class RentalMapper {
 
     private RentalMapper() {}
+
+    public static Rental toEntity(RentalRequestDto dto) {
+        return new Rental()
+                .setName(dto.name())
+                .setSurface(dto.surface())
+                .setPrice(dto.price())
+                .setDescription(dto.description());
+    }
 
     public static RentalResponseDto toDto(Rental rental) {
         return new RentalResponseDto(
