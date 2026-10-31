@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
@@ -64,6 +65,13 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST) // 400
     public Map<String, Object> handleMissingServletRequestPartException(MissingServletRequestPartException e) {
         log.warn("Missing multipart part '{}'", e.getRequestPartName());
+        return Map.of();
+    }
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    @ResponseStatus(HttpStatus.PAYLOAD_TOO_LARGE) // 413
+    public Map<String, Object> handleMaxUploadSizeExceededException(MaxUploadSizeExceededException e) {
+        log.warn("Upload exceeds the maximum allowed size");
         return Map.of();
     }
 
