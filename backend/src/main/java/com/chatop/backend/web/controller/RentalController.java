@@ -3,6 +3,7 @@ package com.chatop.backend.web.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,6 +60,12 @@ public class RentalController {
                                      Authentication authentication) {
         rentalService.update(id, RentalMapper.toEntity(dto), authentication.getName());
         return new MessageResponseDto("Rental updated !");
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id, Authentication authentication) {
+        rentalService.delete(id, authentication.getName());
     }
 
 }
