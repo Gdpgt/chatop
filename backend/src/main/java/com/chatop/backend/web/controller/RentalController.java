@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -49,6 +50,15 @@ public class RentalController {
                                      Authentication authentication) {
         rentalService.create(RentalMapper.toEntity(dto), picture, authentication.getName());
         return new MessageResponseDto("Rental created !");
+    }
+
+    @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public MessageResponseDto update(@PathVariable int id,
+                                     @ModelAttribute @Valid RentalRequestDto dto,
+                                     Authentication authentication) {
+        rentalService.update(id, RentalMapper.toEntity(dto), authentication.getName());
+        return new MessageResponseDto("Rental updated !");
     }
 
 }
