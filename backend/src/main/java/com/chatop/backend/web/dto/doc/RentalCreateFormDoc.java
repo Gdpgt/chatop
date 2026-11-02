@@ -8,6 +8,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(name = "RentalCreateForm", allOf = RentalRequestDto.class, requiredProperties = {"picture"})
 public record RentalCreateFormDoc(
 
-  @Schema(description = "Image de la location", type = "string", format = "binary")
-  String picture
+    @Schema(description = "Image de la location", type = "string", format = "binary")
+    String picture
 ) {}

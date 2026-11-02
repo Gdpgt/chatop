@@ -22,7 +22,6 @@ public class JwtService {
         this.tokenValidity = tokenValidity;
     }
 
-    
     public String generateJwt(String userEmail) {
         Instant now = Instant.now();
         return encoder.encode(JwtEncoderParameters.from(

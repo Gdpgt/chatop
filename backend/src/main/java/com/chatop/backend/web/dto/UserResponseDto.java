@@ -12,9 +12,9 @@ public record UserResponseDto(
 
     String email,
 
-    @JsonProperty("created_at") 
+    @JsonProperty("created_at")
     LocalDateTime createdAt,
 
-    @JsonProperty("updated_at") 
+    @JsonProperty("updated_at")
     LocalDateTime updatedAt
 ) {}

@@ -36,49 +36,49 @@ import static com.chatop.backend.validation.ValidationPatterns.*;
 @NoArgsConstructor
 public class Rental {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Setter(AccessLevel.NONE)
-  @ToString.Include
-  private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
+    @ToString.Include
+    private Integer id;
 
-  @NotBlank(message = NAME_MANDATORY_MESSAGE)
-  @Size(min = RENTAL_NAME_MIN, max = RENTAL_NAME_MAX, message = RENTAL_NAME_SIZE_MESSAGE)
-  @Pattern(regexp = SINGLE_LINE_TEXT_REGEX, message = RENTAL_NAME_FORMAT_MESSAGE)
-  @ToString.Include
-  private String name;
+    @NotBlank(message = NAME_MANDATORY_MESSAGE)
+    @Size(min = RENTAL_NAME_MIN, max = RENTAL_NAME_MAX, message = RENTAL_NAME_SIZE_MESSAGE)
+    @Pattern(regexp = SINGLE_LINE_TEXT_REGEX, message = RENTAL_NAME_FORMAT_MESSAGE)
+    @ToString.Include
+    private String name;
 
-  @NotNull(message = SURFACE_MANDATORY_MESSAGE)
-  @Min(value = SURFACE_MIN, message = SURFACE_RANGE_MESSAGE)
-  @Max(value = SURFACE_MAX, message = SURFACE_RANGE_MESSAGE)
-  @ToString.Include
-  private BigDecimal surface;
+    @NotNull(message = SURFACE_MANDATORY_MESSAGE)
+    @Min(value = SURFACE_MIN, message = SURFACE_RANGE_MESSAGE)
+    @Max(value = SURFACE_MAX, message = SURFACE_RANGE_MESSAGE)
+    @ToString.Include
+    private BigDecimal surface;
 
-  @NotNull(message = PRICE_MANDATORY_MESSAGE)
-  @Min(value = PRICE_MIN, message = PRICE_RANGE_MESSAGE)
-  @Max(value = PRICE_MAX, message = PRICE_RANGE_MESSAGE)
-  @ToString.Include
-  private BigDecimal price;
+    @NotNull(message = PRICE_MANDATORY_MESSAGE)
+    @Min(value = PRICE_MIN, message = PRICE_RANGE_MESSAGE)
+    @Max(value = PRICE_MAX, message = PRICE_RANGE_MESSAGE)
+    @ToString.Include
+    private BigDecimal price;
 
-  @NotBlank(message = PICTURE_MANDATORY_MESSAGE)
-  @Size(max = PICTURE_MAX, message = PICTURE_SIZE_MESSAGE)
-  private String picture;
+    @NotBlank(message = PICTURE_MANDATORY_MESSAGE)
+    @Size(max = PICTURE_MAX, message = PICTURE_SIZE_MESSAGE)
+    private String picture;
 
-  @NotBlank(message = DESCRIPTION_MANDATORY_MESSAGE)
-  @Size(max = DESCRIPTION_MAX, message = DESCRIPTION_SIZE_MESSAGE)
-  @Pattern(regexp = FREE_TEXT_REGEX, message = DESCRIPTION_FORMAT_MESSAGE)
-  private String description;
+    @NotBlank(message = DESCRIPTION_MANDATORY_MESSAGE)
+    @Size(max = DESCRIPTION_MAX, message = DESCRIPTION_SIZE_MESSAGE)
+    @Pattern(regexp = FREE_TEXT_REGEX, message = DESCRIPTION_FORMAT_MESSAGE)
+    private String description;
 
-  @Column(name = "owner_id", nullable = false)
-  @NotNull(message = OWNER_MANDATORY_MESSAGE)
-  @ToString.Include
-  private Integer ownerId;
+    @Column(name = "owner_id", nullable = false)
+    @NotNull(message = OWNER_MANDATORY_MESSAGE)
+    @ToString.Include
+    private Integer ownerId;
 
-  @Column(name = "created_at", updatable = false)
-  @CreationTimestamp
-  private LocalDateTime createdAt;
+    @Column(name = "created_at", updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
-  @Column(name = "updated_at")
-  @UpdateTimestamp
-  private LocalDateTime updatedAt;
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 }

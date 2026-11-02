@@ -33,32 +33,32 @@ import static com.chatop.backend.validation.ValidationPatterns.*;
 @NoArgsConstructor
 public class Message {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Setter(AccessLevel.NONE)
-  @ToString.Include
-  private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
+    @ToString.Include
+    private Integer id;
 
-  @Column(name = "rental_id", nullable = false)
-  @NotNull(message = RENTAL_MANDATORY_MESSAGE)
-  @ToString.Include
-  private Integer rentalId;
+    @Column(name = "rental_id", nullable = false)
+    @NotNull(message = RENTAL_MANDATORY_MESSAGE)
+    @ToString.Include
+    private Integer rentalId;
 
-  @Column(name = "user_id", nullable = false)
-  @NotNull(message = SENDER_MANDATORY_MESSAGE)
-  @ToString.Include
-  private Integer userId;
+    @Column(name = "user_id", nullable = false)
+    @NotNull(message = SENDER_MANDATORY_MESSAGE)
+    @ToString.Include
+    private Integer userId;
 
-  @NotBlank(message = MESSAGE_MANDATORY_MESSAGE)
-  @Size(max = MESSAGE_MAX, message = MESSAGE_SIZE_MESSAGE)
-  @Pattern(regexp = FREE_TEXT_REGEX, message = MESSAGE_FORMAT_MESSAGE)
-  private String message;
+    @NotBlank(message = MESSAGE_MANDATORY_MESSAGE)
+    @Size(max = MESSAGE_MAX, message = MESSAGE_SIZE_MESSAGE)
+    @Pattern(regexp = FREE_TEXT_REGEX, message = MESSAGE_FORMAT_MESSAGE)
+    private String message;
 
-  @Column(name = "created_at", updatable = false)
-  @CreationTimestamp
-  private LocalDateTime createdAt;
+    @Column(name = "created_at", updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
-  @Column(name = "updated_at")
-  @UpdateTimestamp
-  private LocalDateTime updatedAt;
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 }

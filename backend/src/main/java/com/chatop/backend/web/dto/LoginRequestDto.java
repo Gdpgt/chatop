@@ -15,10 +15,10 @@ public record LoginRequestDto(
     @NotBlank(message = PASSWORD_MANDATORY_MESSAGE)
     String password
 
-){
+) {
 
     @Override
     public String toString() {
-      return "LoginRequestDto[email=" + email + "]";
+        return "LoginRequestDto[email=" + email + "]";
     }
 }

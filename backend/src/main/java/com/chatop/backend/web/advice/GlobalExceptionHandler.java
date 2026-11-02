@@ -140,5 +140,4 @@ public class GlobalExceptionHandler {
         log.error("Unexpected internal error", e);
         return Map.of();
     }
-    
 }

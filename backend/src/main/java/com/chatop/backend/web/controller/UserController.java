@@ -40,5 +40,4 @@ public class UserController {
                                    @PathVariable int id) {
         return UserMapper.toDto(userService.getById(id));
     }
-    
 }
