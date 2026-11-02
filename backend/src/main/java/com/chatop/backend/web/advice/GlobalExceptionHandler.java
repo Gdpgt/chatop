@@ -24,8 +24,11 @@ import com.chatop.backend.domain.exception.RentalNotFoundException;
 import com.chatop.backend.domain.exception.UserAlreadyExistsException;
 import com.chatop.backend.domain.exception.UserNotFoundException;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.extern.slf4j.Slf4j;
 
+// Hidden: otherwise springdoc adds every handler's response to every operation
+@Hidden
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
