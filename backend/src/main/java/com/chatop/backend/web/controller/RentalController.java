@@ -42,6 +42,11 @@ public class RentalController {
 
     private final RentalService rentalService;
 
+    /**
+     * Lists all rentals.
+     *
+     * @return every rental, wrapped in a {@code rentals} field as expected by the front-end
+     */
     @Operation(summary = "Lister toutes les locations")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Liste des locations"),
@@ -53,6 +58,12 @@ public class RentalController {
         return RentalMapper.toListDto(rentalService.getAll());
     }
 
+    /**
+     * Returns one rental.
+     *
+     * @param id rental id
+     * @return the rental; 404 if it does not exist
+     */
     @Operation(summary = "Récupérer une location")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Location trouvée"),
@@ -67,6 +78,14 @@ public class RentalController {
         return RentalMapper.toDto(rentalService.getById(id));
     }
 
+    /**
+     * Creates a rental owned by the current user and stores its picture on the server.
+     *
+     * @param dto rental fields (multipart form)
+     * @param picture mandatory JPEG, PNG, GIF or WebP image
+     * @param authentication owner, taken from the JWT
+     * @return a confirmation message
+     */
     @Operation(summary = "Créer une location",
                description = "Formulaire multipart avec image obligatoire. Propriétaire = utilisateur du JWT.")
     @ApiResponses({
@@ -88,6 +107,14 @@ public class RentalController {
         return new MessageResponseDto("Rental created !");
     }
 
+    /**
+     * Updates the fields of a rental; its picture is kept.
+     *
+     * @param id rental id
+     * @param dto new rental fields (multipart form, no picture)
+     * @param authentication requester, must be the owner (403 otherwise)
+     * @return a confirmation message
+     */
     @Operation(summary = "Modifier une location",
                description = "Formulaire multipart sans image : l'image existante est conservée. "
                            + "Propriétaire uniquement.")
@@ -112,6 +139,12 @@ public class RentalController {
         return new MessageResponseDto("Rental updated !");
     }
 
+    /**
+     * Deletes a rental, its messages and its picture file.
+     *
+     * @param id rental id
+     * @param authentication requester, must be the owner (403 otherwise)
+     */
     @Operation(summary = "Supprimer une location", description = "Propriétaire uniquement. Non appelée par le front.")
     @ApiResponses({
         @ApiResponse(responseCode = "204", description = "Location supprimée"),

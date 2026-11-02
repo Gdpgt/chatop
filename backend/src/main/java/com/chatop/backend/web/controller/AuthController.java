@@ -35,6 +35,12 @@ public class AuthController {
     private final AuthService authService;
     private final UserService userService;
 
+    /**
+     * Registers a new user and logs them in.
+     *
+     * @param dto name, email and plain password (hashed with BCrypt before storage)
+     * @return a JWT for the new user
+     */
     @Operation(summary = "Créer un compte", description = "Route publique. Renvoie un JWT.")
     @SecurityRequirements
     @ApiResponses({
@@ -48,6 +54,12 @@ public class AuthController {
         return new AuthResponseDto(token);
     }
 
+    /**
+     * Authenticates a user with email and password.
+     *
+     * @param dto user credentials
+     * @return a JWT; bad credentials lead to a 401
+     */
     @Operation(summary = "Se connecter", description = "Route publique. Renvoie un JWT à utiliser dans « Authorize ».")
     @SecurityRequirements
     @ApiResponses({
@@ -62,6 +74,12 @@ public class AuthController {
         return new AuthResponseDto(token);
     }
 
+    /**
+     * Returns the user identified by the JWT of the request.
+     *
+     * @param authentication authenticated principal, built from the JWT subject (email)
+     * @return the current user, without password
+     */
     @Operation(summary = "Récupérer l'utilisateur connecté", description = "Utilisateur déduit du JWT.")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Utilisateur trouvé"),

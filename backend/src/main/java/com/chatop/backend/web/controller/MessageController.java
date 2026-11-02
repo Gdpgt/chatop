@@ -28,6 +28,13 @@ public class MessageController {
 
     private final MessageService messageService;
 
+    /**
+     * Stores a message sent to the owner of a rental.
+     *
+     * @param dto target rental id and message content
+     * @param authentication sender, taken from the JWT
+     * @return a confirmation message; 404 if the rental does not exist
+     */
     @Operation(summary = "Envoyer un message au propriétaire d'une location",
                description = "Expéditeur = utilisateur du JWT. Le champ user_id envoyé par le front est ignoré.")
     @ApiResponses({

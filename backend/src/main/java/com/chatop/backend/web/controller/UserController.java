@@ -27,6 +27,12 @@ public class UserController {
 
     private final UserService userService;
 
+    /**
+     * Returns one user.
+     *
+     * @param id user id
+     * @return the user, without password; 404 if it does not exist
+     */
     @Operation(summary = "Récupérer un utilisateur")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Utilisateur trouvé"),
