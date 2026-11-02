@@ -92,6 +92,37 @@ npm run start
 
 Open `http://localhost:4200`. Calls to `/api` are proxied to the back-end (`src/proxy.config.json`).
 
+## API documentation (Swagger)
+
+With the back-end running, open **http://localhost:3001/swagger-ui.html**
+(OpenAPI JSON: `http://localhost:3001/v3/api-docs`). The documentation is public.
+
+Every route except `POST /api/auth/register` and `POST /api/auth/login` requires a JWT. To test them:
+
+1. Call `POST /api/auth/register` (or `/login` with an existing account) and copy the `token` from the response.
+2. Click **Authorize**, paste the token (without the `Bearer ` prefix) and confirm.
+3. The secured routes are now sent with `Authorization: Bearer <token>`.
+
+| Method | Route | Auth |
+|---|---|---|
+| `POST` | `/api/auth/register` | public |
+| `POST` | `/api/auth/login` | public |
+| `GET` | `/api/auth/me` | JWT |
+| `GET` | `/api/user/{id}` | JWT |
+| `GET` | `/api/rentals` | JWT |
+| `GET` | `/api/rentals/{id}` | JWT |
+| `POST` | `/api/rentals` (multipart) | JWT |
+| `PUT` | `/api/rentals/{id}` (multipart) | JWT, owner |
+| `DELETE` | `/api/rentals/{id}` | JWT, owner |
+| `POST` | `/api/messages` | JWT |
+
+Full specification: `docs/definition_API.md`.
+
+## Uploaded images
+
+Rental pictures are stored in `backend/uploads/` (override with `UPLOAD_DIR` in `env.properties`) and served
+publicly at `http://localhost:3001/images/<file>` (override the base URL with `PUBLIC_URL`).
+
 ## Development tools (optional)
 
 ### Mockoon

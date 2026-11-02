@@ -4,8 +4,6 @@
 > proposition confirmée). Ce fichier est distinct de la fiche d'auto-évaluation
 > (`docs/oc/Fiches_auto-evaluation.md`), que l'agent ne remplit jamais.
 
-**Étape en cours** : Exercice 2, Étape 3 – Nettoyage & finalisation.
-
 ## Exercice 1 — Définir l'interface front-back avec une API
 
 - [x] Environnement installé (Java, Node, Angular CLI 20) et front lancé [BRIEF]
@@ -23,6 +21,6 @@
 - [x] Toutes les routes Mockoon implémentées et validées avec le front [SPECS]
 - [x] Image de location : upload, stockage serveur, URL en base [SPECS]
 - [x] Swagger : chaque route documentée, testable avec un Bearer token [BRIEF]
-- [ ] Nettoyage : code mort, `System.out`, méthodes publiques des controllers commentées [fiche]
-- [ ] README Spring Boot (installation, BDD, URL Swagger) [BRIEF]
-- [ ] Branche de release [BRIEF]
+- [x] Nettoyage : code mort, `System.out`, méthodes publiques des controllers commentées [fiche]
+- [x] README Spring Boot (installation, BDD, URL Swagger) [BRIEF]
+- [x] Branche de release [BRIEF]
